@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "註冊";
+}
+
+@section CSS{
+    <style>
+        * {
+            font-family: 'Microsoft JhengHei';
+        }
+
+        .res-panel {
+            height: 300px;
+            width: 500px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .res-panel > .panel-body {
+            padding: 0;
+            height: calc(100% - 46px);
+        }
+
+        .res-panel > .panel-heading {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .res-panel .res-row {
+            width: 100%;
+            height: 25%;
+            position: relative;
+        }
+
+        .res-panel .res-row > span {
+            font-size: 24px;
+            position: absolute;
+            right: 330px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
+
+        .res-panel .form-control {
+            position: absolute;
+            left: 180px;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            margin: auto;
+        }
+
+        #register{
+            position: absolute;
+            right: 14px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
+    </style>
+
+}
+
+
+<div class="panel panel-warning res-panel">
+    <div class="panel-heading">課表系統：註冊</div>
+    <div class="panel-body">
+        <div class="res-row">
+            <span class="label label-warning">帳號</span>
+            <input type="text" class="form-control" id="account" placeholder="請輸入帳號...">
+        </div>
+
+        <div class="res-row">
+            <span class="label label-warning">密碼</span>
+            <input type="password" class="form-control" id="password" placeholder="請輸入密碼...">
+        </div>
+
+        <div class="res-row">
+            <span class="label label-warning">第二次密碼</span>
+            <input type="password" class="form-control" id="password" placeholder="請輸入第二次密碼...">
+        </div>
+
+        <div class="res-row">
+            <div class="btn btn-default" id="register">註冊</div>
+        </div>
+    </div>
+</div>
