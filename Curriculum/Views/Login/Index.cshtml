@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "登入";
+}
+
+@section CSS{
+    <style>
+        *{
+            font-family:'Microsoft JhengHei';
+        }
+
+        .login-panel{
+            height:196px;
+            width:500px;
+            position:absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+        }
+
+        .login-panel > .panel-body{
+            padding:0;
+            height:150px;
+
+        }
+
+        .login-panel > .panel-heading{
+            text-align:center;
+            font-size:18px;
+        }
+
+        .login-panel .login-row{
+            width:100%;
+            height:50%;
+            position: relative
+        }
+
+        .login-panel .login-row > span{
+            font-size: 24px;
+            position: absolute;
+            left: 80px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
+
+       .login-panel .form-control{
+            position: absolute;
+            left: 180px;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            margin: auto;
+        }
+    </style>
+   
+}
+
+
+<div class="panel panel-info login-panel">
+    <div class="panel-heading">課表系統：登入</div>
+    <div class="panel-body">
+        <div class="login-row">
+            <span class="label label-primary">帳號</span>
+            <input type="text" class="form-control" id="account" placeholder="請輸入帳號...">
+        </div>
+
+        <div class="login-row">
+            <span class="label label-primary">密碼</span>
+            <input type="password" class="form-control" id="password" placeholder="請輸入密碼...">
+        </div>
+    </div>
+</div>
