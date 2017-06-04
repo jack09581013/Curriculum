@@ -1,0 +1,128 @@
+﻿
+@{
+    ViewBag.Title = "課表";
+}
+
+@section CSS{
+    <link href="~/Content/table.min.css" rel="stylesheet" />
+    <style>
+        *{
+            font-family:'Microsoft JhengHei'
+        }
+
+        #main-table{
+            position:absolute;
+            top:150px;
+            left:0;
+            right:0;
+            margin:auto;
+            width:800px;
+        }
+
+        #main-table thead th{
+            text-align:center;
+            font-size:28px;
+        }
+
+        #main-table tbody td{
+            font-size:18px;
+        }
+
+        #main-table td.time{
+            text-align:center;
+            height:50px;
+            line-height:50px;
+        }
+    </style>
+}
+
+
+
+<table class="ui celled table" id="main-table">
+    <thead>
+        <tr>
+            <th>時間</th>
+            <th>一</th>
+            <th>二</th>
+            <th>三</th>
+            <th>四</th>
+            <th>五</th>
+            <th>六</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="time">8:10~9:00</td>
+            <td>二<br>5555</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+        <tr>
+            <td class="time">9:10~10:00</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+        <tr>
+            <td class="time">10:10~11:00</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+        <tr>
+            <td class="time">11:10~12:00</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+        <tr>
+            <td class="time">12:10~13:00</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+        <tr>
+            <td class="time">13:10~14:00</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+        <tr>
+            <td class="time">14:10~15:00</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+        <tr>
+            <td class="time">15:10~16:00</td>
+            <td>二</td>
+            <td>三</td>
+            <td>四</td>
+            <td>五</td>
+            <td>六</td>
+            <td>七</td>
+        </tr>
+    </tbody>
+</table>
+

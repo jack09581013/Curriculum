@@ -10,7 +10,7 @@
         }
 
         .login-panel{
-            height:196px;
+            height:250px;
             width:500px;
             position:absolute;
             left:0;
@@ -22,7 +22,7 @@
 
         .login-panel > .panel-body{
             padding:0;
-            height:150px;
+            height:calc(100% - 46px);
 
         }
 
@@ -33,7 +33,7 @@
 
         .login-panel .login-row{
             width:100%;
-            height:50%;
+            height:33%;
             position: relative
         }
 
@@ -55,6 +55,15 @@
             width: 250px;
             margin: auto;
         }
+
+        #login{
+            position: absolute;
+            right: 14px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
     </style>
    
 }
@@ -71,6 +80,10 @@
         <div class="login-row">
             <span class="label label-primary">密碼</span>
             <input type="password" class="form-control" id="password" placeholder="請輸入密碼...">
+        </div>
+
+        <div class="login-row">
+            <div class="btn btn-success" id="login">登入</div>
         </div>
     </div>
 </div>
