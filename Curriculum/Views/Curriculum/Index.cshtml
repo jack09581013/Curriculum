@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "課表";
+    Session["account"] = "10334";
 }
 
 @section CSS{
@@ -26,6 +27,7 @@
 
         #main-table tbody td{
             font-size:18px;
+            position:relative;
         }
 
         #main-table td.time{
@@ -33,10 +35,26 @@
             height:50px;
             line-height:50px;
         }
+
+        .class-detail{
+            position:absolute;
+            top:0;
+            left:0;
+            bottom:0;
+            right:0;
+            z-index:1;
+        }
+
+        .popover{
+            max-width:300px;
+            white-space:nowrap;
+        }
+
+        .delete-class{
+            cursor:pointer;
+        }
     </style>
 }
-
-
 
 <table class="ui celled table" id="main-table">
     <thead>
@@ -51,78 +69,58 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
+        @*<tr>
             <td class="time">8:10~9:00</td>
-            <td>二<br>5555</td>
+            <td>
+                <span>計算機結構</span><br>
+                <span>忠104</span>
+                <div class="class-detail" data-toggle="popover" data-trigger="click" title="課程資訊" data-content="計算機結構<br>忠104<br>教師：陳青文<hr><span class=&quot glyphicon glyphicon-trash &quot></span>"></div>
+            </td>
             <td>三</td>
             <td>四</td>
             <td>五</td>
             <td>六</td>
             <td>七</td>
-        </tr>
-        <tr>
-            <td class="time">9:10~10:00</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-            <td>七</td>
-        </tr>
-        <tr>
-            <td class="time">10:10~11:00</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-            <td>七</td>
-        </tr>
-        <tr>
-            <td class="time">11:10~12:00</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-            <td>七</td>
-        </tr>
-        <tr>
-            <td class="time">12:10~13:00</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-            <td>七</td>
-        </tr>
-        <tr>
-            <td class="time">13:10~14:00</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-            <td>七</td>
-        </tr>
-        <tr>
-            <td class="time">14:10~15:00</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-            <td>七</td>
-        </tr>
-        <tr>
-            <td class="time">15:10~16:00</td>
-            <td>二</td>
-            <td>三</td>
-            <td>四</td>
-            <td>五</td>
-            <td>六</td>
-            <td>七</td>
-        </tr>
+        </tr>*@
+        
     </tbody>
 </table>
 
+<script>
+    var times = ["8:10~9:00", "9:10~10:00", "10:10~11:00", "11:10~12:00", "12:10~13:00", "13:10~14:00", "14:10~15:00",
+        "15:10~16:00", "16:10~17:00", "17:10~18:00", "18:10~19:00", "19:10~20:00", "20:10~21:00", "21:10~22:00"]
+    var $table = $('#main-table tbody')
+
+    $.getJSON('/Curriculum/CurData', function (data) {
+        console.log(data)
+
+        var i = 0 //data's index
+        for (var row = 1; row <= 14; row++) {
+            var tr = '<tr>'
+            tr += '<td class="time">' + times[row-1] + '</td>'
+            for (var col = 1; col <= 6; col++) {
+                if (i < data.length && data[i].row == row && data[i].col == col) {
+                    tr += '<td>'
+                    tr += '<span>' + data[i].class_name + '</span><br>'
+                    tr += '<span>' + data[i].class_room + '</span>'
+                    tr += '<div class="class-detail" data-toggle="popover" data-trigger="click" title="課程資訊" data-content="' + data[i].class_name + '<br>' + data[i].class_room
+                    if (data[i].teacher != null) {
+                        tr += '<br>教師：' + data[i].teacher
+                    }
+                    tr += '<hr><span class=&quot glyphicon glyphicon-trash delete-class&quot></span>"></div></td>'
+                    i++
+                }
+                else {
+                    tr += '<td></td>'
+                }                
+            }
+            tr += '</tr>'
+            $table.append(tr)
+        }
+
+        $('.class-detail').popover({ html: true })
+    })
+
+
+    
+</script>

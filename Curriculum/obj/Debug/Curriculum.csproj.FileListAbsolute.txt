@@ -50,3 +50,7 @@ C:\Users\USER\Documents\Visual Studio 2015\Projects\Curriculum\Curriculum\bin\zh
 C:\Users\USER\Documents\Visual Studio 2015\Projects\Curriculum\Curriculum\obj\Debug\Curriculum.csprojResolveAssemblyReference.cache
 C:\Users\USER\Documents\Visual Studio 2015\Projects\Curriculum\Curriculum\obj\Debug\Curriculum.dll
 C:\Users\USER\Documents\Visual Studio 2015\Projects\Curriculum\Curriculum\obj\Debug\Curriculum.pdb
+C:\Users\USER\documents\visual studio 2015\Projects\Curriculum\Curriculum\bin\Json.dll
+C:\Users\USER\documents\visual studio 2015\Projects\Curriculum\Curriculum\bin\Newtonsoft.Json.dll
+C:\Users\USER\documents\visual studio 2015\Projects\Curriculum\Curriculum\bin\Json.pdb
+C:\Users\USER\documents\visual studio 2015\Projects\Curriculum\Curriculum\bin\Newtonsoft.Json.xml
