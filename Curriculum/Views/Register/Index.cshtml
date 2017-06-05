@@ -73,17 +73,17 @@
     <div class="panel-body">
         <div class="res-row">
             <span class="label label-warning">帳號</span>
-            <input type="text" class="form-control" id="account" placeholder="請輸入帳號...">
+            <input type="text" class="form-control" id="account" pattern="[A-Za-z]{15}" placeholder="請輸入帳號...">
         </div>
 
         <div class="res-row">
             <span class="label label-warning">密碼</span>
-            <input type="password" class="form-control" id="password" placeholder="請輸入密碼...">
+            <input type="password" class="form-control" id="password" pattern="[A-Za-z]{15}" placeholder="請輸入密碼...">
         </div>
 
         <div class="res-row">
             <span class="label label-warning">第二次密碼</span>
-            <input type="password" class="form-control" id="password" placeholder="請輸入第二次密碼...">
+            <input type="password" class="form-control" id="password2" pattern="[A-Za-z]{15}" placeholder="請輸入第二次密碼...">
         </div>
 
         <div class="res-row">
@@ -91,3 +91,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#register').click(function () {
+        var account = $('#account').val()
+        var password = $('#password').val()
+        var password2 = $('#password2').val()
+
+        if (password == password2) {
+            $.ajax({
+                url: '/Register/Register',
+                data: {
+                    account: account,
+                    password: password
+                },
+                type: 'POST',
+                error: function(){
+                    alert('註冊失敗！已有此帳號')
+                },
+                success: function () {
+                    alert('註冊成功！')
+                }
+            })
+        }
+        else {
+            alert('密碼與第二組密碼不相符！')
+            $('#password').val('')
+            $('#password2').val('')
+        }
+    })
+</script>
