@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "註冊";
+}
+
+@section CSS{
+    <style>
+        * {
+            font-family: 'Microsoft JhengHei';
+        }
+
+        .res-panel {
+            height: 300px;
+            width: 500px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .res-panel > .panel-body {
+            padding: 0;
+            height: calc(100% - 46px);
+        }
+
+        .res-panel > .panel-heading {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .res-panel .res-row {
+            width: 100%;
+            height: 25%;
+            position: relative;
+        }
+
+        .res-panel .res-row > span {
+            font-size: 24px;
+            position: absolute;
+            right: 330px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
+
+        .res-panel .form-control {
+            position: absolute;
+            left: 180px;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            margin: auto;
+        }
+
+        #register {
+            position: absolute;
+            right: 14px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
+    </style>
+
+}
+
+
+<div class="panel panel-warning res-panel">
+    <div class="panel-heading">課表系統：註冊</div>
+    <div class="panel-body">
+        <div class="res-row">
+            <span class="label label-warning">帳號</span>
+            <input type="text" class="form-control" id="account" placeholder="請輸入帳號...">
+        </div>
+
+        <div class="res-row">
+            <span class="label label-warning">密碼</span>
+            <input type="password" class="form-control" id="password" placeholder="請輸入密碼...">
+        </div>
+
+        <div class="res-row">
+            <span class="label label-warning">第二次密碼</span>
+            <input type="password" class="form-control" id="password2" placeholder="請輸入第二次密碼...">
+        </div>
+
+        <div class="res-row">
+            <div class="btn btn-success" id="register">註冊</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#register').click(function () {
+        var account = $('#account').val()
+        var password = $('#password').val()
+        var password2 = $('#password2').val()
+        var validation = true
+
+        if (account.search(/[^a-z0-9]/i) != -1) {
+            errorShow('帳號只能由英文或數字組合')
+            validation = false
+        }
+
+        if (8 > account.length || account.length > 15) {
+            errorShow('帳號長度必須介於8~15')
+            validation = false
+        }
+
+        if (password.search(/[^a-z0-9]/i) != -1) {
+            errorShow('密碼只能由英文或數字組合')
+            validation = false
+        }
+
+        if (8 > password.length || password.length > 15) {
+            errorShow('密碼長度必須介於8~15')
+            validation = false
+        }
+
+        if (validation == true) {
+            if (password == password2) {
+                $.ajax({
+                    url: '/Main/RegisterAccount',
+                    data: {
+                        account: account,
+                        password: password
+                    },
+                    type: 'POST',
+                    dataType: 'text',
+                    success: function (data) {
+                        console.log(data)
+                        if (data == 'register success') {
+                            correctShow('註冊成功！')
+                            window.location.replace('/Main/Login')
+                        }
+                        else if (data == 'account exist') {
+                            errorShow('帳號已經存在，請重新輸入帳號')
+                            $('#account').val('')
+                            $('#password').val('')
+                            $('#password2').val('')
+                        }
+                    }
+                })
+            }
+            else {
+                errorShow('密碼與第二組密碼不相符！')
+                $('#password').val('')
+                $('#password2').val('')
+            }
+        }        
+    })
+</script>

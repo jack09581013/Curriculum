@@ -7,6 +7,8 @@
     <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/segment.min.css" rel="stylesheet" />
     <link href="~/Content/menu.min.css" rel="stylesheet" />
+    <link href="~/Content/message.css" rel="stylesheet" />
+    <script src="~/Scripts/message.js"></script>
     @RenderSection("CSS")
 </head>
 <body>
@@ -21,9 +23,9 @@
     </style>
     <div class="ui inverted segment main-menu">
         <div class="ui inverted secondary pointing menu">
-            <a class="active item" href="~/Login/Index">登入</a>
-            <a class="item" href="~/Register/Index">註冊</a>
-            <a class="item" href="~/Curriculum/Index">顯示課表</a>
+            <a class="active item" href="~/Main/Login">登入</a>
+            <a class="item" href="~/Main/Register">註冊</a>
+            <a class="item" href="~/Main/Curriculum">顯示課表</a>
         </div>
     </div>
    @RenderBody()    

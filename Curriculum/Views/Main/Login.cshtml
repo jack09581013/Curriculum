@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "登入";
+}
+
+@section CSS{
+    <style>
+        * {
+            font-family: 'Microsoft JhengHei';
+        }
+
+        .login-panel {
+            height: 250px;
+            width: 500px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .login-panel > .panel-body {
+            padding: 0;
+            height: calc(100% - 46px);
+        }
+
+        .login-panel > .panel-heading {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .login-panel .login-row {
+            width: 100%;
+            height: 33%;
+            position: relative;
+        }
+
+        .login-panel .login-row > span {
+            font-size: 24px;
+            position: absolute;
+            left: 80px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
+
+        .login-panel .form-control {
+            position: absolute;
+            left: 180px;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            margin: auto;
+        }
+
+        #login {
+            position: absolute;
+            right: 14px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 35px;
+        }
+    </style>
+
+}
+
+
+<div class="panel panel-info login-panel">
+    <div class="panel-heading">課表系統：登入</div>
+    <div class="panel-body">
+        <div class="login-row">
+            <span class="label label-primary">帳號</span>
+            <input type="text" class="form-control" id="account" placeholder="請輸入帳號...">
+        </div>
+
+        <div class="login-row">
+            <span class="label label-primary">密碼</span>
+            <input type="password" class="form-control" id="password" placeholder="請輸入密碼...">
+        </div>
+
+        <div class="login-row">
+            <div class="btn btn-success" id="login">登入</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#login').click(function () {
+        var account = $('#account').val()
+        var password = $('#password').val()
+        var validation = true
+
+        if (account.search(/[^a-z0-9]/i) != -1) {
+            errorShow('帳號只能由英文或數字組合')
+            validation = false
+        }
+
+        if (8 > account.length || account.length > 15) {
+            errorShow('帳號長度必須介於8~15')
+            validation = false
+        }
+
+        if (password.search(/[^a-z0-9]/i) != -1) {
+            errorShow('密碼只能由英文或數字組合')
+            validation = false
+        }
+
+        if (8 > password.length || password.length > 15) {
+            errorShow('密碼長度必須介於8~15')
+            validation = false
+        }
+
+        if (validation == true) {
+            $.ajax({
+                url: '/Main/LoginAccount',
+                type: 'post',
+                data: {
+                    account: account,
+                    password: password
+                },
+                dataType: 'text',
+                success: function (data) {
+                    if (data == 'login success') {
+                        window.location.replace('/Main/Curriculum')
+                    }
+                    else if(data == 'login failure'){
+                        errorShow('登入失敗，無此帳號或密碼')
+                    }
+                }
+            })
+        }
+    })
+</script>
